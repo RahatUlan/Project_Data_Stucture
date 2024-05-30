@@ -1,0 +1,109 @@
+/**
+* 
+* this is my own created programe. some bugs maybe shown when it is working in different OS & machine; please inform if any problem accure;
+* this programe created in Kali Linux with netbeans IDE; Date: 30.05.2024 && Time: 09.30 AM(ASIA)
+* problem# make a programe using array data structure algorithm to find 10 students marks with user input list; Then sort them in descending order and search the individual value(Binary search
+* is recommended);
+* 
+*/
+package com.mycompany.array;
+
+import java.util.Scanner;
+import java.io.IOException;
+
+class P{
+    Scanner s = new Scanner(System.in);
+    int[] a = new int[10];
+    int n = a.length;
+    void entry(){
+        for(int i=0;i<n;i++){   // this iteration is for enter the list item;
+            a[i] = s.nextInt();   // user input to the list;
+        }
+    }
+    void sort(){
+        int temp = 0;
+        //entry();   //win10 x64 it is working but linux has problem; 
+        /*Bubble sorting start*/
+        for(int i=0;i<n-1;i++){
+            for(int j=0;j<n-1-i;j++){
+                if(a[j]<a[j+1]){
+                    temp = a[j];
+                    a[j] = a[j+1];
+                    a[j+1] = temp;
+                }
+            }
+        /*Bubble sorting end*/
+        }
+        System.out.print("Your Sorted Data: ");     // this iteration is for rearrange the list;
+        for(int i=0;i<n;i++){
+            System.out.print(a[i]+" ");
+        }
+    }
+    /*void exist(){
+        P z = new P();    //win10 x64 it is storing the previous data; but not useful;
+        z.sort();
+    }*/
+    int bsearch(){
+        System.out.println("Enter your Data: ");
+        entry();
+        sort();
+        int start = 0;
+        int end = n-1;
+        System.out.println("\nEnter your Searching Key: ");
+        int data = s.nextInt();
+        while(start<=end){
+            int mid = (start+end)/2;
+            for(int i=0;i<n;i++){
+                if(a[mid]==data){
+                    return mid;
+                }
+                else if(a[mid]<data){
+                    end = mid +1;
+                }
+                else{
+                    start = mid - 1;
+                }
+            }
+        }
+        return -1;
+    }
+}
+public class Array {
+    public static void main(String[] args) throws IOException{
+        P p = new P();
+        System.out.print("Please choose your operation: \n 1. Sort Your Data\n 2. Search Your Data\n");
+        System.out.println("Enter your choice: ");
+        int button = p.s.nextInt();
+        switch(button){
+            case 1:
+                while(button != 1){
+                    System.out.println("Invalid Operation");
+                }
+                while(button == 1){
+                    System.out.print("Enter your list: "+"\n");
+                    p.entry();
+                    System.out.println("Press 0 to sort data");
+                    int x = p.s.nextInt();
+                    if(x == 0){
+                        p.sort();
+                        break;
+                    }else{
+                        System.out.println("press the valid button\nThank you");
+                    }
+                }
+                break;
+            case 2:
+                while(button == 2){
+                    int result = p.bsearch();
+                    if(result == -1){
+                        System.out.println("Invalid Data\nBuild again");
+                    }else{
+                        System.out.print("Data Found: "+ result);
+                        System.out.print(" index");
+                    }
+                    break;
+                }
+                break;
+        }
+    }
+}

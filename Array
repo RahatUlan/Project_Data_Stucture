@@ -44,7 +44,7 @@ class P{
         z.sort();
     }*/
     int bsearch(){
-        System.out.println("Enter your Data: ");
+        System.out.println("Enter your Datalist: ");
         entry();
         sort();
         int start = 0;
